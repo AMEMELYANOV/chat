@@ -59,6 +59,13 @@ public class PersonController {
     @PostMapping("/sign-up")
     @Validated(Operation.OnCreate.class)
     public ResponseEntity<Person> create(@Valid @RequestBody Person person) {
+        Person personFromDB = personService.findByUsername(person.getUsername());
+        if (personFromDB != null) {
+            return new ResponseEntity<Person>(
+                    person,
+                    HttpStatus.BAD_REQUEST
+            );
+        }
         person.setPassword(encoder.encode(person.getPassword()));
         personService.save(person);
         return new ResponseEntity<Person>(

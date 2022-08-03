@@ -40,4 +40,8 @@ public class PersonService {
             throws InvocationTargetException, IllegalAccessException {
         return DTOService.patchModel(personRepository, person);
     }
+
+    public Person findByUsername(String username) {
+        return personRepository.findByUsername(username);
+    }
 }
