@@ -1,5 +1,6 @@
 package ru.job4j.chat.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -10,13 +11,10 @@ import ru.job4j.chat.repository.PersonRepository;
 
 import static java.util.Collections.emptyList;
 
+@AllArgsConstructor
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
     private final PersonRepository personRepository;
-
-    public UserDetailsServiceImpl(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -1,6 +1,8 @@
 package ru.job4j.chat.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -22,23 +24,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@Slf4j
+@AllArgsConstructor
 @RestController
 @RequestMapping("/users")
 public class PersonController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(
-            PersonController.class.getSimpleName());
     private final PersonService personService;
     private final BCryptPasswordEncoder encoder;
     private final ObjectMapper objectMapper;
-
-    public PersonController(PersonService personService,
-                            BCryptPasswordEncoder encoder,
-                            ObjectMapper objectMapper) {
-        this.personService = personService;
-        this.encoder = encoder;
-        this.objectMapper = objectMapper;
-    }
 
     @GetMapping("/all")
     public List<Person> findAll() {
@@ -98,7 +92,7 @@ public class PersonController {
             put("message", e.getMessage());
             put("type", e.getClass());
         }}));
-        LOGGER.error(e.getLocalizedMessage());
+        log.error(e.getLocalizedMessage());
     }
 
     @PatchMapping("/")

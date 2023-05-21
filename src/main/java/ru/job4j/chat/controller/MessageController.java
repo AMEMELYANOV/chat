@@ -1,5 +1,6 @@
 package ru.job4j.chat.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -15,14 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/message")
 public class MessageController {
     private final MessageService messageService;
-
-    public MessageController(MessageService messageService) {
-        this.messageService = messageService;
-    }
 
     @GetMapping("/")
     public List<Message> findAll() {

@@ -1,5 +1,6 @@
 package ru.job4j.chat.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,14 +15,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/role")
 public class RoleController {
     private final RoleService roleService;
-
-    public RoleController(RoleService roleService) {
-        this.roleService = roleService;
-    }
 
     @GetMapping("/")
     public List<Role> findAll() {

@@ -1,5 +1,6 @@
 package ru.job4j.chat.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.job4j.chat.model.Room;
 import ru.job4j.chat.repository.RoomRepository;
@@ -10,13 +11,10 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+@AllArgsConstructor
 @Service
 public class RoomService {
     private final RoomRepository roomRepository;
-
-    public RoomService(RoomRepository roomRepository) {
-        this.roomRepository = roomRepository;
-    }
 
     public List<Room> findAll() {
         return StreamSupport.stream(

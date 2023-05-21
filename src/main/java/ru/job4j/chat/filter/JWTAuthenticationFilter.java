@@ -2,6 +2,7 @@ package ru.job4j.chat.filter;
 
 import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,6 +21,7 @@ import java.util.Date;
 
 import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 
+@RequiredArgsConstructor
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     public static final String SECRET = "SecretKeyToGenJWTs";
@@ -29,10 +31,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public static final String SIGN_UP_URL = "/users/sign-up";
 
     private final AuthenticationManager auth;
-
-    public JWTAuthenticationFilter(AuthenticationManager auth) {
-        this.auth = auth;
-    }
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)

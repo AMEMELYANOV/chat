@@ -1,5 +1,6 @@
 package ru.job4j.chat.controller;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -14,14 +15,11 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/room")
 public class RoomController {
     private final RoomService roomService;
-
-    public RoomController(RoomService roomService) {
-        this.roomService = roomService;
-    }
 
     @GetMapping("/")
     public List<Room> findAll() {

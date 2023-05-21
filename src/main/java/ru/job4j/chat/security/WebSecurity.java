@@ -1,5 +1,6 @@
 package ru.job4j.chat.security;
 
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,16 +18,11 @@ import ru.job4j.chat.service.UserDetailsServiceImpl;
 
 import static ru.job4j.chat.filter.JWTAuthenticationFilter.SIGN_UP_URL;
 
+@AllArgsConstructor
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter {
     private final UserDetailsServiceImpl userDetailsService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public WebSecurity(UserDetailsServiceImpl userDetailsService,
-                       BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.userDetailsService = userDetailsService;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
