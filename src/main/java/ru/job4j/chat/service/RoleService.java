@@ -1,40 +1,21 @@
 package ru.job4j.chat.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import ru.job4j.chat.model.Role;
-import ru.job4j.chat.repository.RoleRepository;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import java.util.List;
+import java.util.Optional;
 
-@AllArgsConstructor
-@Service
-public class RoleService {
-    private final RoleRepository roleRepository;
+public interface RoleService {
 
-    public List<Role> findAll() {
-        return StreamSupport.stream(
-                this.roleRepository.findAll().spliterator(), false
-        ).collect(Collectors.toList());
-    }
+    List<Role> findAll();
 
-    public Optional<Role> findById(int id) {
-        return roleRepository.findById(id);
-    }
+    Optional<Role> findById(int id);
 
-    public Role save(Role role) {
-        return roleRepository.save(role);
-    }
+    Role save(Role role);
 
-    public void delete(Role role) {
-        roleRepository.delete(role);
-    }
+    void delete(Role role);
 
-    public Optional<Role> patchModel(Role role)
-            throws InvocationTargetException, IllegalAccessException {
-        return DTOService.patchModel(roleRepository, role);
-    }
+    Optional<Role> patchModel(Role role)
+            throws InvocationTargetException, IllegalAccessException;
 }

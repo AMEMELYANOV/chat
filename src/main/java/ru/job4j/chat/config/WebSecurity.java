@@ -1,4 +1,4 @@
-package ru.job4j.chat.security;
+package ru.job4j.chat.config;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpMethod;

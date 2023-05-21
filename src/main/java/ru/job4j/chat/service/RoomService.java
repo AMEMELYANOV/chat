@@ -1,41 +1,21 @@
 package ru.job4j.chat.service;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
 import ru.job4j.chat.model.Room;
-import ru.job4j.chat.repository.RoomRepository;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-@AllArgsConstructor
-@Service
-public class RoomService {
-    private final RoomRepository roomRepository;
+public interface RoomService {
 
-    public List<Room> findAll() {
-        return StreamSupport.stream(
-                this.roomRepository.findAll().spliterator(), false
-        ).collect(Collectors.toList());
-    }
+    List<Room> findAll();
 
-    public Optional<Room> findById(int id) {
-        return roomRepository.findById(id);
-    }
+    Optional<Room> findById(int id);
 
-    public Room save(Room room) {
-        return roomRepository.save(room);
-    }
+    Room save(Room room);
 
-    public void delete(Room room) {
-        roomRepository.delete(room);
-    }
+    void delete(Room room);
 
-    public Optional<Room> patchModel(Room room)
-            throws InvocationTargetException, IllegalAccessException {
-        return DTOService.patchModel(roomRepository, room);
-    }
+    Optional<Room> patchModel(Room room)
+            throws InvocationTargetException, IllegalAccessException;
 }
