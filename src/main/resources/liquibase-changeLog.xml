@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <include file="db/scripts/001_ddl_create_role_table.sql" relativeToChangelogFile="true" context="dev, test"/>
+    <include file="db/scripts/002_ddl_create_person_table.sql" relativeToChangelogFile="true" context="dev, test"/>
+    <include file="db/scripts/003_ddl_create_person_roles_table.sql" relativeToChangelogFile="true" context="dev, test"/>
+    <include file="db/scripts/004_ddl_create_room_table.sql" relativeToChangelogFile="true" context="dev, test"/>
+    <include file="db/scripts/005_ddl_create_message_table.sql" relativeToChangelogFile="true" context="dev, test"/>
+    <include file="db/scripts/006_dml_insert_role.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="db/scripts/007_dml_insert_person.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="db/scripts/008_dml_insert_person_role.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="db/scripts/009_dml_insert_room.sql" relativeToChangelogFile="true" context="dev"/>
+    <include file="db/scripts/010_dml_insert_message.sql" relativeToChangelogFile="true" context="dev"/>
+</databaseChangeLog>
