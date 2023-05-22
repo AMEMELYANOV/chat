@@ -38,4 +38,5 @@ public class Person extends Model {
 
     @ManyToMany
     private final List<Role> roles = new ArrayList<>();
+
 }

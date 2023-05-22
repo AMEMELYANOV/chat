@@ -59,7 +59,6 @@ public class PersonController {
             );
         }
         person.setPassword(encoder.encode(person.getPassword()));
-        personService.save(person);
         return new ResponseEntity<Person>(
                 this.personService.save(person),
                 HttpStatus.CREATED
@@ -81,6 +80,15 @@ public class PersonController {
         return ResponseEntity.ok().build();
     }
 
+    @PatchMapping("/")
+    public ResponseEntity<Person> patch(@RequestBody Person person)
+            throws InvocationTargetException, IllegalAccessException {
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(personService.patchModel(person).
+                        orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                                "Person is not found or invalid properties mapping")));
+    }
+
     @ExceptionHandler(value = { IllegalArgumentException.class })
     public void exceptionHandler(Exception e, HttpServletRequest request,
                                  HttpServletResponse response) throws IOException {
@@ -91,15 +99,6 @@ public class PersonController {
             put("type", e.getClass());
         }}));
         log.error(e.getLocalizedMessage());
-    }
-
-    @PatchMapping("/")
-    public ResponseEntity<Person> patch(@RequestBody Person person)
-            throws InvocationTargetException, IllegalAccessException {
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(personService.patchModel(person).
-                        orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                                "Person is not found or invalid properties mapping")));
     }
 }
 

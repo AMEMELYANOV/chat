@@ -6,5 +6,6 @@ import lombok.*;
 @Setter
 public abstract class Model {
 
+    @SuppressWarnings("checkstyle:VisibilityModifier")
     protected int id;
 }

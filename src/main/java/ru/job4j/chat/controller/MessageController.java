@@ -40,11 +40,8 @@ public class MessageController {
     @PostMapping("/")
     @Validated(Operation.OnCreate.class)
     public ResponseEntity<Message> create(@Valid @RequestBody Message message) {
-        Message saved = this.messageService.save(message);
-        Message byId = messageService.findById(saved.getId()).get();
-
         return new ResponseEntity<Message>(
-                saved,
+                this.messageService.save(message),
                 HttpStatus.CREATED
         );
     }
