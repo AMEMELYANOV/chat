@@ -1,29 +1,46 @@
 package ru.job4j.chat.filter;
 
 import com.auth0.jwt.JWT;
-        import com.auth0.jwt.algorithms.Algorithm;
-        import org.springframework.security.authentication.AuthenticationManager;
-        import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-        import org.springframework.security.core.context.SecurityContextHolder;
-        import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import com.auth0.jwt.algorithms.Algorithm;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
-        import javax.servlet.FilterChain;
-        import javax.servlet.ServletException;
-        import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
-        import java.io.IOException;
-        import java.util.ArrayList;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
 
-        import static ru.job4j.chat.filter.JWTAuthenticationFilter.HEADER_STRING;
-        import static ru.job4j.chat.filter.JWTAuthenticationFilter.SECRET;
-        import static ru.job4j.chat.filter.JWTAuthenticationFilter.TOKEN_PREFIX;
+import static ru.job4j.chat.filter.JWTAuthenticationFilter.*;
 
+/**
+ * Фильтр запросов с JWT токеном
+ *
+ * @author Alexander Emelyanov
+ * @version 1.0
+ */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
+    /**
+     * Конструктор
+     *
+     * @param authManager менеджер аутентификации
+     */
     public JWTAuthorizationFilter(AuthenticationManager authManager) {
         super(authManager);
     }
 
+    /**
+     * Проверяет наличие JWT токена в хедерах запроса, если успешно,
+     * устанавливает аутентификацию в контекст безопасности.
+     *
+     * @param req   запрос пользователя
+     * @param res   ответ пользователю
+     * @param chain цепь фильтров
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest req,
                                     HttpServletResponse res,
@@ -41,6 +58,13 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         chain.doFilter(req, res);
     }
 
+    /**
+     * Создает пользовательский объект на основании JWT токена
+     * и возвращает его.
+     *
+     * @param request запрос пользователя
+     * @return объект аутентификации
+     */
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
         if (token != null) {

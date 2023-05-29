@@ -11,8 +11,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import java.util.Date;
-import java.util.Objects;
 
+/**
+ * Модель данных сообщение
+ *
+ * @author Alexander Emelyanov
+ * @version 1.0
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -20,6 +25,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "message")
 public class Message extends Model {
+
+    /**
+     * Идентификатор сообщения
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull(message = "Id must be non null", groups = {
@@ -27,17 +36,29 @@ public class Message extends Model {
     })
     private int id;
 
+    /**
+     * Содержание сообщения
+     */
     @NotBlank(message = "Title must be not empty")
     private String content;
 
+    /**
+     * Дата и время создания сообщения
+     */
     @PastOrPresent(message = "Created time must be past or present")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Date created = new Date();
 
+    /**
+     * Пользователь сообщения
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "person_id")
     private Person person;
 
+    /**
+     * Комната сообщения
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
     private Room room;

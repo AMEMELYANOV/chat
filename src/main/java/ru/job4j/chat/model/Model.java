@@ -1,11 +1,20 @@
 package ru.job4j.chat.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
+/**
+ * Модель данных идентификатор
+ *
+ * @author Alexander Emelyanov
+ * @version 1.0
+ */
 @Getter
 @Setter
 public abstract class Model {
 
-    @SuppressWarnings("checkstyle:VisibilityModifier")
+    /**
+     * Идентификатор
+     */
     protected int id;
 }

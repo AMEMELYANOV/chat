@@ -10,8 +10,13 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
+/**
+ * Модель данных роль
+ *
+ * @author Alexander Emelyanov
+ * @version 1.0
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -19,6 +24,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "role")
 public class Role extends Model {
+
+    /**
+     * Идентификатор роли
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull(message = "Id must be non null", groups = {
@@ -26,6 +35,9 @@ public class Role extends Model {
     })
     private int id;
 
+    /**
+     * Наименование роли
+     */
     @Size(min = 4, message = "Name's length must be more than 4 characters.")
     @NotBlank(message = "Title must be not empty")
     private String name;

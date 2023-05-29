@@ -9,8 +9,13 @@ import ru.job4j.chat.validator.Operation;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Objects;
 
+/**
+ * Модель данных комната
+ *
+ * @author Alexander Emelyanov
+ * @version 1.0
+ */
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -18,6 +23,10 @@ import java.util.Objects;
 @Entity
 @Table(name = "room")
 public class Room extends Model {
+
+    /**
+     * Идентификатор комнаты
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotNull(message = "Id must be non null", groups = {
@@ -25,6 +34,9 @@ public class Room extends Model {
     })
     private int id;
 
+    /**
+     * Наименование комнаты
+     */
     @NotBlank(message = "Title must be not empty")
     private String name;
 }

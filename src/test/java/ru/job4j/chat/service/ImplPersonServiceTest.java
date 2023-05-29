@@ -38,7 +38,7 @@ class ImplPersonServiceTest {
     private PersonService personService;
 
     /**
-     * Персона
+     * Пользователь
      */
     private Person person;
 
@@ -86,7 +86,7 @@ class ImplPersonServiceTest {
 
     /**
      * Выполняется проверка возвращения персоны при возврате
-     * от personRepository, если персона найдена по id.
+     * от personRepository, если пользователь найдена по id.
      */
     @Test
     public void findByIdShouldReturnPersonWhenExists() {
@@ -99,7 +99,7 @@ class ImplPersonServiceTest {
 
     /**
      * Выполняется проверка возвращения пустого Optional при возврате
-     * от personRepository, если персона не найдена по id.
+     * от personRepository, если пользователь не найдена по id.
      */
     @Test
     public void findByIdShouldReturnEmptyOptionalWhenNotExists() {
@@ -112,7 +112,7 @@ class ImplPersonServiceTest {
 
     /**
      * Выполняется проверка возвращения персоны при возврате
-     * от personRepository, если персона сохранена.
+     * от personRepository, если пользователь сохранена.
      */
     @Test
     public void saveShouldReturnPersonWhenSuccess() {

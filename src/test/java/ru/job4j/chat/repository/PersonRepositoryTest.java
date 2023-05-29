@@ -32,7 +32,7 @@ class PersonRepositoryTest {
     private PersonRepository personRepository;
 
     /**
-     * Персона
+     * Пользователь
      */
     private Person person;
 
@@ -66,7 +66,7 @@ class PersonRepositoryTest {
 
     /**
      * Выполняется проверка нахождения в репозитории персоны по id,
-     * если персона сохранена в репозитории.
+     * если пользователь сохранена в репозитории.
      */
     @Test
     public void findByIdShouldReturnPersonWhenExists() {
